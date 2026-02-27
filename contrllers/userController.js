@@ -1,14 +1,15 @@
 import { User } from "../models/User.js";
 
 export const addUser = async (req, res) => {
+  const { fname, lname, mail, pwd, mob, addr } = req.body;
   try {
     const user = new User({
-      firstName: "Kashif",
-      lastName: "Saleem",
-      email: "kashif@gmail.com",
-      password: "5544sdfsd",
-      mobile: "0300-4235656",
-      address: "Lahore",
+      firstName: fname,
+      lastName: lname,
+      email: mail,
+      password: pwd,
+      mobile: mob,
+      address: addr,
     });
 
     await user.save();
@@ -24,4 +25,8 @@ export const addUser = async (req, res) => {
 export const getAllUsers = async (req, res) => {
   const data = await User.find();
   res.json(data);
+};
+
+export const registerUser = (req, res) => {
+  res.render("register");
 };

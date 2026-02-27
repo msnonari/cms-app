@@ -16,7 +16,11 @@ const app = express();
 connectDB();
 
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.urlencoded({ extended: true }));
+
 app.use(userRouter);
+
+app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
