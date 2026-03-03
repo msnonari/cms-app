@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import { fileURLToPath } from "node:url";
 import { connectDB } from "./config/db.js";
 import userRouter from "./routes/userRoutes.js";
+import pageRouter from "./routes/pageRoutes.js";
 
 dotenv.config();
 const port = process.env.PORT || 3000;
@@ -18,13 +19,10 @@ connectDB();
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 
-app.use(userRouter);
-
 app.set("view engine", "ejs");
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+app.use(userRouter);
+app.use(pageRouter);
 
 app.listen(port, () => {
   console.log(`Server started at http://localhost:${port}`);
