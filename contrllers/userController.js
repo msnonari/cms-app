@@ -15,7 +15,7 @@ export const addUser = async (req, res) => {
     await user.save();
 
     console.log("Record added.");
-    res.send("Record added.");
+    res.redirect("/login");
   } catch (err) {
     console.log(err.message);
     res.send(err.message);

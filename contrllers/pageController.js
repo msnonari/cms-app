@@ -13,3 +13,11 @@ export const contactPage = (req, res) => {
 export const postPage = (req, res) => {
   res.render("post");
 };
+
+export const loginPage = (req, res) => {
+  res.render("login");
+};
+
+export const registerPage = (req, res) => {
+  res.render("register");
+};
