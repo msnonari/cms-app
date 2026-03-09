@@ -27,6 +27,17 @@ export const getAllUsers = async (req, res) => {
   res.json(data);
 };
 
-export const registerUser = (req, res) => {
-  res.render("register");
+export const loginUser = async (req, res) => {
+  const { mail, pwd } = req.body;
+  try {
+    const user = await User.findOne({ email: mail });
+    if (user && user.password == pwd) {
+      res.redirect("/dashboard");
+    } else {
+      res.send("<h1>Invalid Email or Password!</h1>");
+    }
+  } catch (err) {
+    console.log(err.message);
+    res.send(err.message);
+  }
 };
