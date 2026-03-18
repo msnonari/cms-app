@@ -1,5 +1,8 @@
-export const homePage = (req, res) => {
-  res.render("index");
+import { Post } from "../models/Post.js";
+
+export const homePage = async (req, res) => {
+  const data = await Post.find();
+  res.render("index", { posts: data });
 };
 
 export const aboutPage = (req, res) => {

@@ -5,6 +5,13 @@ export const getAllPosts = async (req, res) => {
   res.json(data);
 };
 
+export const getPost = async (req, res) => {
+  const pid = req.params.postID;
+  const data = await Post.findOne({ _id: pid });
+
+  res.send(data);
+};
+
 export const addPost = async (req, res) => {
   res.render("admin/addpost");
 };
