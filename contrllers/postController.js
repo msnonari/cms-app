@@ -9,7 +9,7 @@ export const getPost = async (req, res) => {
   const pid = req.params.postID;
   const data = await Post.findOne({ _id: pid });
 
-  res.send(data);
+  res.render("post", { post: data });
 };
 
 export const addPost = async (req, res) => {
