@@ -32,6 +32,10 @@ export const loginUser = async (req, res) => {
   try {
     const user = await User.findOne({ email: mail });
     if (user && user.password == pwd) {
+      req.session.user = {
+        id: user._id,
+        email: user.email,
+      };
       res.redirect("/dashboard");
     } else {
       res.send("<h1>Invalid Email or Password!</h1>");
@@ -40,4 +44,13 @@ export const loginUser = async (req, res) => {
     console.log(err.message);
     res.send(err.message);
   }
+};
+
+export const logoutUser = (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.log(err);
+    }
+    res.redirect("/");
+  });
 };
